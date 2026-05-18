@@ -161,11 +161,11 @@ services:
       - infra-network
 
   databasus:
-    image: ghcr.io/databasus/databasus:latest
+    image: databasus/databasus:latest
     container_name: databasus
     restart: unless-stopped
     ports:
-      - "${DATABASUS_PORT}:9260"
+      - "${DATABASUS_PORT}:4005"
     environment:
       TZ: ${TZ}
     volumes:
