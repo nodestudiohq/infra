@@ -14,7 +14,7 @@ services:
       - ./data/npm:/data
       - ./data/letsencrypt:/etc/letsencrypt
     networks:
-      - infra-network
+      - core-network
 
   portainer:
     image: portainer/portainer-ce:latest
@@ -28,7 +28,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data/portainer:/data
     networks:
-      - infra-network
+      - core-network
 
   mariadb:
     image: mariadb:11
@@ -46,7 +46,7 @@ services:
     volumes:
       - ./data/mariadb:/var/lib/mysql
     networks:
-      - infra-network
+      - core-network
 
   redis:
     image: redis:7-alpine
@@ -59,7 +59,7 @@ services:
     volumes:
       - ./data/redis:/data
     networks:
-      - infra-network
+      - core-network
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -76,7 +76,7 @@ services:
     depends_on:
       - mariadb
     networks:
-      - infra-network
+      - core-network
 
   uptime-kuma:
     image: louislam/uptime-kuma:latest
@@ -89,7 +89,7 @@ services:
     volumes:
       - ./data/uptime-kuma:/app/data
     networks:
-      - infra-network
+      - core-network
 
   dozzle:
     image: amir20/dozzle:latest
@@ -103,7 +103,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - infra-network
+      - core-network
 
   netdata:
     image: netdata/netdata:latest
@@ -122,7 +122,7 @@ services:
       - /sys:/host/sys:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - infra-network
+      - core-network
 
   duplicati:
     image: duplicati/duplicati:latest
@@ -137,7 +137,7 @@ services:
       - ${SOURCE_PATH}:/source
       - ${BACKUP_PATH}:/backup
     networks:
-      - infra-network
+      - core-network
 
   poste:
     image: analogic/poste.io
@@ -159,7 +159,7 @@ services:
     volumes:
       - ./data/poste:/data
     networks:
-      - infra-network
+      - core-network
 
   databasus:
     image: databasus/databasus:latest
@@ -172,8 +172,9 @@ services:
     volumes:
       - ./data/databasus:/backups
     networks:
-      - infra-network
+      - core-network
 
 networks:
-  infra-network:
+  core-network:
+    name: core-network
     driver: bridge
