@@ -152,6 +152,7 @@ services:
       - "${MAIL_SUBMISSION_PORT}:587"
       - "${MAIL_IMAPS_PORT}:993"
       - "${MAIL_POP3S_PORT}:995"
+      - "${MAIL_WEBUI}:80"
     environment:
       TZ: ${TZ}
       HTTPS: ${POSTE_HTTPS}
