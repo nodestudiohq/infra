@@ -69,7 +69,7 @@ services:
       TZ: ${TZ}
       PMA_HOST: mariadb
       PMA_PORT: 3306
-      PMA_ARBITRARY: 1
+      PMA_ARBITRARY: 0
       UPLOAD_LIMIT: ${PHPMYADMIN_UPLOAD_LIMIT}
     ports:
       - "${PHPMYADMIN_PORT}:80"
