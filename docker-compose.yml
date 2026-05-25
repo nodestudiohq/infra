@@ -7,12 +7,6 @@ services:
       - "${HTTP_PORT}:80"
       - "${NPM_PORT}:81"
       - "${HTTPS_PORT}:443"
-      - "110:110"
-      - "143:143"
-      - "465:465"
-      - "587:587"
-      - "993:993"
-      - "995:995"
     environment:
       TZ: ${TZ}
       DB_SQLITE_FILE: /data/database.sqlite
@@ -152,20 +146,12 @@ services:
     restart: unless-stopped
     ports:
       - "${MAIL_SMTP_PORT}:25"
-      # - "${MAIL_POP3_PORT}:110"
-      # - "${MAIL_IMAP_PORT}:143"
-      # - "${MAIL_SMTPS_PORT}:465"
-      # - "${MAIL_SUBMISSION_PORT}:587"
-      # - "${MAIL_IMAPS_PORT}:993"
-      # - "${MAIL_POP3S_PORT}:995"
-      # - "${MAIL_WEBUI}:80"
-    expose:
-      - "110"
-      - "143"
-      - "465"
-      - "587"
-      - "993"
-      - "995"
+      - "${MAIL_POP3_PORT}:110"
+      - "${MAIL_IMAP_PORT}:143"
+      - "${MAIL_SMTPS_PORT}:465"
+      - "${MAIL_SUBMISSION_PORT}:587"
+      - "${MAIL_IMAPS_PORT}:993"
+      - "${MAIL_POP3S_PORT}:995"
     environment:
       TZ: ${TZ}
       HTTPS: ${POSTE_HTTPS}
