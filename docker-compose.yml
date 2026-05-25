@@ -7,6 +7,12 @@ services:
       - "${HTTP_PORT}:80"
       - "${NPM_PORT}:81"
       - "${HTTPS_PORT}:443"
+      - "110:110"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
+      - "995:995"
     environment:
       TZ: ${TZ}
       DB_SQLITE_FILE: /data/database.sqlite
