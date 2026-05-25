@@ -17,7 +17,7 @@ services:
       - core-network
 
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ee:2.42.0
     container_name: portainer
     restart: unless-stopped
     ports:
@@ -78,18 +78,18 @@ services:
     networks:
       - core-network
 
-  uptime-kuma:
-    image: louislam/uptime-kuma:latest
-    container_name: uptime-kuma
-    restart: unless-stopped
-    ports:
-      - "${UPTIMEKUMA_PORT}:3001"
-    environment:
-      TZ: ${TZ}
-    volumes:
-      - ./data/uptime-kuma:/app/data
-    networks:
-      - core-network
+  # uptime-kuma:
+  #   image: louislam/uptime-kuma:latest
+  #   container_name: uptime-kuma
+  #   restart: unless-stopped
+  #   ports:
+  #     - "${UPTIMEKUMA_PORT}:3001"
+  #   environment:
+  #     TZ: ${TZ}
+  #   volumes:
+  #     - ./data/uptime-kuma:/app/data
+  #   networks:
+  #     - core-network
 
   dozzle:
     image: amir20/dozzle:latest
@@ -105,39 +105,39 @@ services:
     networks:
       - core-network
 
-  netdata:
-    image: netdata/netdata:latest
-    container_name: netdata
-    restart: unless-stopped
-    ports:
-      - "${NETDATA_PORT}:19999"
-    cap_add:
-      - SYS_PTRACE
-    security_opt:
-      - apparmor:unconfined
-    environment:
-      TZ: ${TZ}
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - core-network
+  # netdata:
+  #   image: netdata/netdata:latest
+  #   container_name: netdata
+  #   restart: unless-stopped
+  #   ports:
+  #     - "${NETDATA_PORT}:19999"
+  #   cap_add:
+  #     - SYS_PTRACE
+  #   security_opt:
+  #     - apparmor:unconfined
+  #   environment:
+  #     TZ: ${TZ}
+  #   volumes:
+  #     - /proc:/host/proc:ro
+  #     - /sys:/host/sys:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #   networks:
+  #     - core-network
 
-  duplicati:
-    image: duplicati/duplicati:latest
-    container_name: duplicati
-    restart: unless-stopped
-    ports:
-      - "${DUPLICATI_PORT}:8200"
-    environment:
-      TZ: ${TZ}
-    volumes:
-      - ./data/duplicati:/config
-      - ${SOURCE_PATH}:/source
-      - ${BACKUP_PATH}:/backup
-    networks:
-      - core-network
+  # duplicati:
+  #   image: duplicati/duplicati:latest
+  #   container_name: duplicati
+  #   restart: unless-stopped
+  #   ports:
+  #     - "${DUPLICATI_PORT}:8200"
+  #   environment:
+  #     TZ: ${TZ}
+  #   volumes:
+  #     - ./data/duplicati:/config
+  #     - ${SOURCE_PATH}:/source
+  #     - ${BACKUP_PATH}:/backup
+  #   networks:
+  #     - core-network
 
   poste:
     image: analogic/poste.io
