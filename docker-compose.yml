@@ -1,20 +1,20 @@
 services:
-  # nginx-proxy-manager:
-  #   image: jc21/nginx-proxy-manager:latest
-  #   container_name: nginx-proxy-manager
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${HTTP_PORT}:80"
-  #     - "${NPM_PORT}:81"
-  #     - "${HTTPS_PORT}:443"
-  #   environment:
-  #     TZ: ${TZ}
-  #     DB_SQLITE_FILE: /data/database.sqlite
-  #   volumes:
-  #     - ./data/npm:/data
-  #     - ./data/letsencrypt:/etc/letsencrypt
-  #   networks:
-  #     - core-network
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT}:80"
+      - "${NPM_PORT}:81"
+      - "${HTTPS_PORT}:443"
+    environment:
+      TZ: ${TZ}
+      DB_SQLITE_FILE: /data/database.sqlite
+    volumes:
+      - ./data/npm:/data
+      - ./data/letsencrypt:/etc/letsencrypt
+    networks:
+      - core-network
 
   portainer:
     image: portainer/portainer-ee:2.42.0
@@ -48,18 +48,18 @@ services:
     networks:
       - core-network
 
-  redis:
-    image: redis:7-alpine
-    container_name: redis
-    restart: unless-stopped
-    ports:
-      - "${REDIS_PORT}:6379"
-    environment:
-      TZ: ${TZ}
-    volumes:
-      - ./data/redis:/data
-    networks:
-      - core-network
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - "${REDIS_PORT}:6379"
+  #   environment:
+  #     TZ: ${TZ}
+  #   volumes:
+  #     - ./data/redis:/data
+  #   networks:
+  #     - core-network
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -145,8 +145,6 @@ services:
     hostname: ${POSTE_HOSTNAME}
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
       - "${MAIL_SMTP_PORT}:25"
       - "${MAIL_POP3_PORT}:110"
       - "${MAIL_IMAP_PORT}:143"
@@ -162,18 +160,18 @@ services:
     networks:
       - core-network
 
-  databasus:
-    image: databasus/databasus:latest
-    container_name: databasus
-    restart: unless-stopped
-    ports:
-      - "${DATABASUS_PORT}:4005"
-    environment:
-      TZ: ${TZ}
-    volumes:
-      - ./data/databasus:/backups
-    networks:
-      - core-network
+  # databasus:
+  #   image: databasus/databasus:latest
+  #   container_name: databasus
+  #   restart: unless-stopped
+  #   ports:
+  #     - "${DATABASUS_PORT}:4005"
+  #   environment:
+  #     TZ: ${TZ}
+  #   volumes:
+  #     - ./data/databasus:/backups
+  #   networks:
+  #     - core-network
 
 networks:
   core-network:
