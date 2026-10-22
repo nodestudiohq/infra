@@ -101,6 +101,7 @@ services:
     environment:
       TZ: ${TZ}
       DOZZLE_LEVEL: ${DOZZLE_LEVEL}
+      DOZZLE_REMOTE_AGENT: 192.168.0.100:7007
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
