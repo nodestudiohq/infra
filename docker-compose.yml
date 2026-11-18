@@ -67,7 +67,7 @@ services:
       - core-network
 
   dozzle:
-    image: amir20/dozzle:v11.4.0
+    image: amir20/dozzle:v11.4.3
     container_name: dozzle
     restart: unless-stopped
     ports:
