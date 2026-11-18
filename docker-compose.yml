@@ -49,19 +49,6 @@ services:
     networks:
       - core-network
 
-  # redis:
-  #   image: redis:7-alpine
-  #   container_name: redis
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${REDIS_PORT}:6379"
-  #   environment:
-  #     TZ: ${TZ}
-  #   volumes:
-  #     - ./data/redis:/data
-  #   networks:
-  #     - core-network
-
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin
@@ -79,19 +66,6 @@ services:
     networks:
       - core-network
 
-  # uptime-kuma:
-  #   image: louislam/uptime-kuma:latest
-  #   container_name: uptime-kuma
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${UPTIMEKUMA_PORT}:3001"
-  #   environment:
-  #     TZ: ${TZ}
-  #   volumes:
-  #     - ./data/uptime-kuma:/app/data
-  #   networks:
-  #     - core-network
-
   dozzle:
     image: amir20/dozzle:v11.4.0
     container_name: dozzle
@@ -104,76 +78,9 @@ services:
       DOZZLE_REMOTE_AGENT: 192.168.0.100:7007
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/dozzle:/data
     networks:
       - core-network
-
-  # netdata:
-  #   image: netdata/netdata:latest
-  #   container_name: netdata
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${NETDATA_PORT}:19999"
-  #   cap_add:
-  #     - SYS_PTRACE
-  #   security_opt:
-  #     - apparmor:unconfined
-  #   environment:
-  #     TZ: ${TZ}
-  #   volumes:
-  #     - /proc:/host/proc:ro
-  #     - /sys:/host/sys:ro
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-  #   networks:
-  #     - core-network
-
-  # duplicati:
-  #   image: duplicati/duplicati:latest
-  #   container_name: duplicati
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${DUPLICATI_PORT}:8200"
-  #   environment:
-  #     TZ: ${TZ}
-  #   volumes:
-  #     - ./data/duplicati:/config
-  #     - ${SOURCE_PATH}:/source
-  #     - ${BACKUP_PATH}:/backup
-  #   networks:
-  #     - core-network
-
-  # poste:
-  #   image: analogic/poste.io
-  #   container_name: poste
-  #   hostname: ${POSTE_HOSTNAME}
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${MAIL_SMTP_PORT}:25"
-  #     - "${MAIL_POP3_PORT}:110"
-  #     - "${MAIL_IMAP_PORT}:143"
-  #     - "${MAIL_SMTPS_PORT}:465"
-  #     - "${MAIL_SUBMISSION_PORT}:587"
-  #     - "${MAIL_IMAPS_PORT}:993"
-  #     - "${MAIL_POP3S_PORT}:995"
-  #   environment:
-  #     TZ: ${TZ}
-  #     HTTPS: ${POSTE_HTTPS}
-  #   volumes:
-  #     - ./data/poste:/data
-  #   networks:
-  #     - core-network
-
-  # databasus:
-  #   image: databasus/databasus:latest
-  #   container_name: databasus
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${DATABASUS_PORT}:4005"
-  #   environment:
-  #     TZ: ${TZ}
-  #   volumes:
-  #     - ./data/databasus:/backups
-  #   networks:
-  #     - core-network
 
 networks:
   core-network:
